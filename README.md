@@ -14,7 +14,7 @@ LTRT is a novel frequency-aware plugin module designed to improve segmentation a
 
 # Inference & Reproduction Steps on LOL-v1 Dataset
 
-To reproduce the experimental results of LTRT + UNet on the LOL-v1 dataset, follow the steps below.
+This section demonstrates the effectiveness of the proposed **LTRT plugin** when integrated into existing architectures. By comparing the baseline UNet and our LTRT+UNet, we show that LTRT improves both quantitative (PSNR/SSIM) and qualitative (visual clarity and structure) performance on the LOL-v1 dataset. To reproduce the experimental results of LTRT + UNet on the LOL-v1 dataset, follow the steps below.
 
 1. **Directory Structure**
 
@@ -96,6 +96,46 @@ This script evaluates the predicted results using PSNR and SSIM and optionally s
 |--------------|--------|--------|
 | UNet     | 20.15  | 0.86   |
 | **LTRT+UNet** | **22.04**  | **0.91**   |
+
+# Comparative Reproduction: LTRT+UNet vs. SKF+UNet on LOL-v1
+
+This repository provides the code and pretrained weights to reproduce and compare the performance of our proposed **LTRT+UNet** model with the prior method **SKF+UNet** on the **LOL-v1** dataset. This comparison highlights the effectiveness of the LTRT module as a plug-in enhancement for low-light image restoration. 
+
+### SKF: Li X, Wang W, Hu X, et al. Selective kernel networks[C]//Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. 2019: 510-519.
+
+## Files
+
+- `LOL_v1_skf_unet.py`  
+  → Main training script for the SKF+UNet model on LOL-v1.
+
+- `LOL_v1_best_skf_unet.pth`  
+  → Pretrained model weights for reproducing quantitative results on LOL-v1 evaluation split.
+
+- `LOL_v1_test_skf_unet.py`  
+  → Evaluation and visualization script to reproduce reported PSNR / SSIM.
+
+## How to Reproduce
+
+1. **Prepare the LOL-v1 Dataset**
+
+   Dataset should be structured as:
+
+2. **Download Pretrained Model**
+
+Place `LOL_v1_best_skf_unet.pth` in the root directory (or adjust path in code if necessary).
+
+3. **Run Inference**
+
+python LOL_v1_test_skf_unet.py
+
+## Quantitative Results on LOL-v1 Dataset
+
+| Model        | PSNR ↑ | SSIM ↑ |
+|--------------|--------|--------|
+| SKF+UNet | 20.52  | 0.86   |
+| **LTRT+UNet** | **23.21**  | **0.88**   |
+
+
 
 
 

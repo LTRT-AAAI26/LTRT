@@ -48,7 +48,7 @@ class LOLV1RealDataset(Dataset):
         return low, high
 
 # ------------------------------
-# Riesz Feature Enhancer (Vectorized)
+# LTRT (Vectorized)
 # ------------------------------
 def generate_riesz_kernels(H, W, device, p=(1,1)):
     Y, X = torch.meshgrid(torch.arange(H, device=device)+1, torch.arange(W, device=device)+1, indexing='ij')
@@ -83,7 +83,7 @@ class RieszFeatureEnhancer(nn.Module):
         self.theta_conv = nn.Sequential(nn.Conv2d(1, 1, 3, padding=1), nn.Sigmoid())
         self.phase_fusion = nn.Sequential(nn.Conv2d(1, 1, 3, padding=1), nn.BatchNorm2d(1), nn.ReLU(inplace=True))
         self.amplitude_boost = nn.Sequential(nn.Conv2d(1, 1, 1), nn.ReLU(inplace=True))
-        # 调整 final_fusion 输入通道为6
+        
         self.final_fusion = nn.Sequential(nn.Conv2d(6, 1, 1), nn.BatchNorm2d(1), nn.ReLU(inplace=True))
         self.global_avg_pool = nn.AdaptiveAvgPool2d(1)
         self.global_fc = nn.Sequential(
@@ -170,7 +170,7 @@ class LTRB_UNet(nn.Module):
         x1 = self.inc(x)
         x2 = self.down1(x1)
         x3 = self.down2(x2)
-        x3 = self.ltrb(x3)  # 调用时不再传递多余参数
+        x3 = self.ltrb(x3)  
         x = self.up1(x3, x2)
         x = self.up2(x, x1)
         return self.outc(x)

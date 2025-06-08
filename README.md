@@ -135,10 +135,24 @@ python LOL_v1_test_skf_unet.py
 | SKF+UNet | 20.52  | 0.86   |
 | **LTRT+UNet** | **23.21**  | **0.88**   |
 
+# LTRB Edge Detection (Unsupervised)
 
+This project implements unsupervised edge detection using the Truncated Riesz Transform (LTRB) — a novel frequency-based technique designed for structural feature extraction without any labeled data. The method operates in the fractional Fourier domain, capturing edge orientation, amplitude, and phase details through adaptive Riesz kernels modulated by a truncated kernel function.
 
+## Getting Started
 
+### Install required dependencies:
 
+- `pip install numpy opencv-python matplotlib scipy`
 
+### Run the Code
 
+- `python LTRB_edge_detect_unsupervision.py`
 
+### You can replace the input with any grayscale image by changing the filename in the script:
+
+- `img = cv2.imread('your_image.png', cv2.IMREAD_GRAYSCALE)`
+
+### Output Example
+
+![ex_3](https://github.com/user-attachments/assets/b57faca3-7d47-43d6-adfa-f119176a8e17)

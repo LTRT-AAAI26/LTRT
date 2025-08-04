@@ -197,21 +197,21 @@ if __name__ == "__main__":
     transform = Compose([Resize((128, 128)), ToTensor()])
     ######lol_v2
     # train_dataset = LOLV2RealDataset(
-    #     r"D:/iccv2025/datasets/LOL-v2/Real_captured/Train/Low",
-    #     r"D:/iccv2025/datasets/LOL-v2/Real_captured/Train/Normal",
+    #     r"D:/AAAI2026/datasets/LOL-v2/Real_captured/Train/Low",
+    #     r"D:/AAAI2026/datasets/LOL-v2/Real_captured/Train/Normal",
     #     transform=transform)
     # test_dataset = LOLV2RealDataset(
-    #     r"D:/iccv2025/datasets/LOL-v2/Real_captured/Test/Low",
-    #     r"D:/iccv2025/datasets/LOL-v2/Real_captured/Test/Normal",
+    #     r"D:/AAAI2026/datasets/LOL-v2/Real_captured/Test/Low",
+    #     r"D:/AAAI2026/datasets/LOL-v2/Real_captured/Test/Normal",
     #     transform=transform)
     #LOL_v1
     train_dataset = LOLV1RealDataset(
-        r"D:/iccv2025/datasets/LOL_v1/train485/Low",
-        r"D:/iccv2025/datasets/LOL_v1/train485/high",
+        r"D:/AAAI2026/datasets/LOL_v1/train485/Low",
+        r"D:/AAAI2026/datasets/LOL_v1/train485/high",
         transform=transform)
     test_dataset = LOLV1RealDataset(
-        r"D:/iccv2025/datasets/LOL_v1/eval15/Low",
-        r"D:/iccv2025/datasets/LOL_v1/eval15/high",
+        r"D:/AAAI2026/datasets/LOL_v1/eval15/Low",
+        r"D:/AAAI2026/datasets/LOL_v1/eval15/high",
         transform=transform)
 
     train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True, num_workers=0) #4
@@ -221,4 +221,5 @@ if __name__ == "__main__":
 
     print("\n🔬 Training PureUNet (baseline)...")
     model_pure = PureUNet(in_ch=3, out_ch=3).to(device)
+
     train_pure_unet(model_pure, train_loader, test_loader, device, epochs=300)

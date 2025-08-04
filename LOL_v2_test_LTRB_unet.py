@@ -70,9 +70,10 @@ def test_inference():
     from LOL_v2_LTRB_unet_mid import LTRB_UNet
     model = load_model(lambda: LTRB_UNet(in_ch=3, out_ch=3, height=128, width=128), "LOL_v2_best_ltrb_unet.pth", device)
     transform = Compose([Resize((128, 128)), ToTensor()])
-    test_dataset = LOLV2RealDataset("D:/iccv2025/datasets/LOL-v2/Real_captured/Test/Low", "D:/iccv2025/datasets/LOL-v2/Real_captured/Test/Normal", transform=transform)
+    test_dataset = LOLV2RealDataset("D:/AAAI2026/datasets/LOL-v2/Real_captured/Test/Low", "D:/AAAI2026/datasets/LOL-v2/Real_captured/Test/Normal", transform=transform)
     test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False)
     avg_psnr, avg_ssim = inference_on_test(model, test_loader, device)
     print(f"Test PSNR: {avg_psnr:.2f}, SSIM: {avg_ssim:.4f}")
     assert avg_psnr > 15, "PSNR too low"
     assert avg_ssim > 0.5, "SSIM too low"
+

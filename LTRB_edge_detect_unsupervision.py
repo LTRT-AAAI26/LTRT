@@ -7,9 +7,7 @@ from scipy.ndimage import convolve
 from numpy import unwrap
 from matplotlib import cm
 
-# ------------------------------
-# Utility Functions
-# ------------------------------
+
 def pad_to_square(image, pad_color=0):
     h, w = image.shape[:2]
     size = max(h, w)
@@ -25,9 +23,6 @@ def crop_to_original(image, original_h, original_w):
     left = (w - original_w) // 2
     return image[top:top+original_h, left:left+original_w]
 
-# ------------------------------
-# Fractional Fourier Transform (2D)
-# ------------------------------
 def fconv(x, y, c):
     N = len(np.concatenate([x.ravel(), y.ravel()])) - 1
     P = 2**int(np.ceil(np.log2(N)))
@@ -89,9 +84,6 @@ def frft2d(matrix, angles):
         temp = np.transpose(temp)
     return np.transpose(temp)
 
-# ------------------------------
-# Truncated Kernel
-# ------------------------------
 def trker(input, t):
     m, n, v = input.shape
     trkerResult = np.zeros((m, n, v))
@@ -127,9 +119,6 @@ def trker(input, t):
 
     return trkerResult
 
-# ------------------------------
-# Riesz Kernels with Truncated Kernel
-# ------------------------------
 def generate_Truncated_riesz_kernels(shape, p, trkerResult):
     m, n = shape
     X, Y = np.meshgrid(np.arange(n)+1, np.arange(m)+1)
@@ -140,9 +129,7 @@ def generate_Truncated_riesz_kernels(shape, p, trkerResult):
     dyker = -1j * (Y/np.sin(a2)) / denom * trkerResult[:,:,0]
     return dxker, dyker
 
-# ------------------------------
-# Fractional Riesz Transform
-# ------------------------------
+
 def fractional_truncated_riesz_transform(image, p, t=0.0001):
     img_expand = np.expand_dims(image, axis=-1)
     trkerResult = trker(img_expand, t)
@@ -162,9 +149,7 @@ def fractional_truncated_riesz_transform(image, p, t=0.0001):
 
     return orientation, phase, amplitude
 
-# ------------------------------
-# Post Processing
-# ------------------------------
+
 def gaussian_filter_2d(size, sigma):
     x = np.linspace(-size//2, size//2, size)
     y = np.linspace(-size//2, size//2, size)
@@ -179,12 +164,10 @@ def apply_gaussian_filter(img, size=2, sigma=0.5):
 def binarize_image(img, threshold=0.7863):
     return (img > threshold).astype(np.uint8) * 255
 
-#------------------------------
-#Main Process
-#------------------------------
+
 if __name__ == "__main__":
     a = [1, 1]
-    img = cv2.imread('baobao2.png', cv2.IMREAD_GRAYSCALE)
+    img = cv2.imread('Figure.png', cv2.IMREAD_GRAYSCALE)
     original_h, original_w = img.shape
     img_pad = pad_to_square(img)
 
@@ -200,3 +183,4 @@ if __name__ == "__main__":
     #plt.title('Fractional Riesz Edge Detection')
     plt.axis('off')
     plt.show()
+

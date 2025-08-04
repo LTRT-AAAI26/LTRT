@@ -142,8 +142,8 @@ def train_skf_unet(epochs=300):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = SKF_UNet().to(device)
     transform = Compose([Resize((128, 128)), ToTensor()])
-    train_dataset = LOLV1RealDataset("D:/iccv2025/datasets/LOL_v1/train485/Low", "D:/iccv2025/datasets/LOL_v1/train485/high", transform=transform)
-    test_dataset = LOLV1RealDataset("D:/iccv2025/datasets/LOL_v1/eval15/Low", "D:/iccv2025/datasets/LOL_v1/eval15/high", transform=transform)
+    train_dataset = LOLV1RealDataset("D:/AAAI2026/datasets/LOL_v1/train485/Low", "D:/AAAI2026/datasets/LOL_v1/train485/high", transform=transform)
+    test_dataset = LOLV1RealDataset("D:/AAAI2026/datasets/LOL_v1/eval15/Low", "D:/AAAI2026/datasets/LOL_v1/eval15/high", transform=transform)
     train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True, num_workers=0)
     test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False, num_workers=0)
     perceptual_loss = VGGPerceptualLoss().to(device)
@@ -185,3 +185,4 @@ def evaluate_model(model, dataloader, device):
 
 if __name__ == "__main__":
     train_skf_unet()
+

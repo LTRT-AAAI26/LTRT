@@ -1,7 +1,7 @@
 # LTRT
 # LTRT: Learnable Truncated Riesz Transform for Low-Light Enhancement and Beyond
 
-Official PyTorch implementation of our AAAI 2026 submission.
+Official PyTorch implementation of our AAAI 2026 anonymous submission.
 LTRT is a novel frequency-aware plugin module designed to improve segmentation accuracy by capturing edge and directional information through a truncated Riesz transform. It can be seamlessly inserted into existing segmentation models such as UNet, ResUNet, and ResUNet++.
 
 # Highlights:

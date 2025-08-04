@@ -40,11 +40,6 @@ python `LOL_v1_LTRB_unet_mid.py` \
   
   --save_dir ./results/
 
-LOL_v1 data is available at:
-
-Anonymous Link: https://pan.baidu.com/s/1F19nI5bG_BinyXJ0NtojGw?pwd=pfv2 Code: pfv2 
-
-
 3. **Evaluate Results**
 
 To calculate PSNR and SSIM between the enhanced images and the ground truth:
@@ -67,10 +62,6 @@ python `LOL_v1_test_LTRB_unet.py` \
 This repository provides code and pretrained weights to reproduce the experimental results of **LTRT+UNet** on the **LOL-v2 Real** dataset.
 
 ## Files
-
-LOL_v2_Real data is available at:
-
-Anonymous Link: https://pan.baidu.com/s/1ra1csxKGiWGFVukE0js0Fw?pwd=b6jc Code: b6jc
 
 - `LOL_v2_best_ltrb_unet.pth`  
   → Pretrained model weights trained on the LOL-v1 dataset and used to test on LOL-v2 Real.
@@ -126,10 +117,6 @@ This repository provides the code and pretrained weights to reproduce and compar
 ## How to Reproduce
 
 1. **Prepare the LOL-v1 Dataset**
-
-   LOL_v1 data is available at:
-
-   Anonymous Link: https://pan.baidu.com/s/1F19nI5bG_BinyXJ0NtojGw?pwd=pfv2 Code: pfv2 
 
 2. **Download Pretrained Model**
 

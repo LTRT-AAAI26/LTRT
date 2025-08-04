@@ -275,12 +275,12 @@ if __name__ == "__main__":
 
     # LOL_v1
     train_dataset = LOLV1RealDataset(
-        r"D:/iccv2025/datasets/LOL_v1/train485/Low",
-        r"D:/iccv2025/datasets/LOL_v1/train485/high",
+        r"D:/AAAI2026/datasets/LOL_v1/train485/Low",
+        r"D:/AAAI2026/datasets/LOL_v1/train485/high",
         transform=transform)
     test_dataset = LOLV1RealDataset(
-        r"D:/iccv2025/datasets/LOL_v1/eval15/Low",
-        r"D:/iccv2025/datasets/LOL_v1/eval15/high",
+        r"D:/AAAI2026/datasets/LOL_v1/eval15/Low",
+        r"D:/AAAI2026/datasets/LOL_v1/eval15/high",
         transform=transform)
 
     train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True, num_workers=0)
@@ -289,3 +289,4 @@ if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = LTRB_UNet(in_ch=3, out_ch=3, height=128, width=128).to(device)
     train_ltrb_unet(model, train_loader, test_loader, device)
+
